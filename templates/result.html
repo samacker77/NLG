@@ -449,8 +449,10 @@ th
           <th><span style="font-weight: bold">Rephrased Text</span></th>
         </tr>
         <tr>
-          <th><span style="font-weight: lighter;">{{prediction[0]}}</span></th>
-          <th><span style="font-weight: lighter;">{{prediction[1]}}</span></th>
+          {%for i in range(0, len)%} 
+  
+    <li><span style="font-weight: lighter;">{{prediction[i]}}</span></li> 
+{%endfor%} 
         </tr>
       </table>
       <!--<p style="font-size: 15px;font-weight: bold;text-align: center;color:#ea5703;font-weight: lighter; ">Rephrased Text</p>

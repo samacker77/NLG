@@ -10,18 +10,14 @@ Bootstrap(app)
 #function to modify string with stylen transfer according  to the personality
 
 translator=Translator()
-def get_paraphrased_text(text):
-    sen_ko=translator.translate(text,dest='ko')
-    sen_en=translator.translate(sen_ko.text,dest='en')
-    if sen_en.text.lower()==text.lower():
-        #print("Greek")
-        sen_greek=translator.translate(text,dest='el')
-        sen_en=translator.translate(sen_greek.text,dest='en')
-        if sen_en.text.lower()==text.lower():    
-            #print("Spanish")
-            sen_es=translator.translate(text,dest='es')
-            sen_en=translator.translate(sen_es.text,dest='en')
-    return sen_en.text
+def paraphrased(in_text):
+    phrased = []
+    for i in ['ko', 'ja', 'el', 'fr', 'tl', 'ar', 'ht','af', 'sq', 'am']:
+        par_text = translator.translate(in_text, dest=i).text
+        phrased.append(translator.translate(par_text, dest='en').text.capitalize())
+    t = [i for i in phrased if i.lower() != in_text.lower()]
+    return "No possible phrases" if not list(set(t)) else list(set(t))
+
 
 # add a rule for the index page.
 @app.route('/')
